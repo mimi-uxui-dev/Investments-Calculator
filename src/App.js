@@ -1,4 +1,5 @@
-import logo from './assets/investment-calculator-logo.png';
+import Header from "./assets/componenets/Header/Header";
+import Input from "./assets/componenets/Inputs/Input";
 
 function App() {
   const calculateHandler = (userInput) => {
@@ -7,10 +8,10 @@ function App() {
 
     const yearlyData = []; // per-year results
 
-    let currentSavings = +userInput['current-savings']; // feel free to change the shape of this input object!
-    const yearlyContribution = +userInput['yearly-contribution']; // as mentioned: feel free to change the shape...
-    const expectedReturn = +userInput['expected-return'] / 100;
-    const duration = +userInput['duration'];
+    let currentSavings = +userInput["current-savings"]; // feel free to change the shape of this input object!
+    const yearlyContribution = +userInput["yearly-contribution"]; // as mentioned: feel free to change the shape...
+    const expectedReturn = +userInput["expected-return"] / 100;
+    const duration = +userInput["duration"];
 
     // The below code calculates yearly results (total savings, interest etc)
     for (let i = 0; i < duration; i++) {
@@ -28,38 +29,45 @@ function App() {
     // do something with yearlyData ...
   };
 
+  const submitHandler = (e) => {
+    e.preventDefault();
+  };
+
+  const resetHandler = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div>
-      <header className="header">
-        <img src={logo} alt="logo" />
-        <h1>Investment Calculator</h1>
-      </header>
+      <Header />
 
-      <form className="form">
+      <form onSubmit={submitHandler} className="form">
         <div className="input-group">
-          <p>
-            <label htmlFor="current-savings">Current Savings ($)</label>
-            <input type="number" id="current-savings" />
-          </p>
-          <p>
-            <label htmlFor="yearly-contribution">Yearly Savings ($)</label>
-            <input type="number" id="yearly-contribution" />
-          </p>
+          <Input
+            id="current-savings"
+            label="Current Savings ($)"
+            type="number"
+          />
+          <Input
+            id="yearly-contribution"
+            label="Yearly Savings ($)"
+            type="number"
+          />
         </div>
         <div className="input-group">
-          <p>
-            <label htmlFor="expected-return">
-              Expected Interest (%, per year)
-            </label>
-            <input type="number" id="expected-return" />
-          </p>
-          <p>
-            <label htmlFor="duration">Investment Duration (years)</label>
-            <input type="number" id="duration" />
-          </p>
+          <Input
+            id="expected-return"
+            label="Expected Interest (%, per year)"
+            type="number"
+          />
+          <Input
+            id="duration"
+            label="00 Investment Duration (years)"
+            type="number"
+          />
         </div>
         <p className="actions">
-          <button type="reset" className="buttonAlt">
+          <button type="reset" onClick={resetHandler} className="buttonAlt">
             Reset
           </button>
           <button type="submit" className="button">
