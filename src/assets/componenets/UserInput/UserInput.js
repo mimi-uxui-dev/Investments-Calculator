@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import classes from "./UserInput.module.css";
+
 const DUMMY_DATA = {
   "current-savings": 10000,
   "yearly-contribution": 1200,
@@ -21,15 +23,15 @@ function UserInput(props) {
     setUserInput((prevState) => {
       return {
         ...prevState,
-        [input]: value,
+        [input]: +value,
       };
     });
   };
 
   return (
-    <form onSubmit={submitHandler} className="form">
-      <div className="input-group">
-        <div className="mb-16">
+    <form onSubmit={submitHandler} className={classes.form}>
+      <div className={classes.inputGroup}>
+        <div className={classes.mb_16}>
           <label htmlFor="current-savings">Current Savings ($)</label>
           <input
             onChange={(e) =>
@@ -40,7 +42,7 @@ function UserInput(props) {
             id="current-savings"
           />
         </div>
-        <div className="mb-16">
+        <div className={classes.mb_16}>
           <label htmlFor="yearly-contribution">Yearly Savings ($)</label>
           <input
             onChange={(e) =>
@@ -52,7 +54,7 @@ function UserInput(props) {
           />
         </div>
       </div>
-      <div className="input-group">
+      <div className={classes.inputGroup}>
         <div className="mb-16">
           <label htmlFor="expected-return">
             Expected Interest (%, per year)
@@ -76,11 +78,15 @@ function UserInput(props) {
           />
         </div>
       </div>
-      <p className="actions">
-        <button type="reset" onClick={resetHandler} className="buttonAlt">
+      <p className={classes.actions}>
+        <button
+          type="reset"
+          onClick={resetHandler}
+          className={classes.buttonAlt}
+        >
           Reset
         </button>
-        <button type="submit" className="button">
+        <button type="submit" className={classes.button}>
           Calculate
         </button>
       </p>
