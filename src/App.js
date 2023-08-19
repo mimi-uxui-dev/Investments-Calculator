@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Header from "./assets/componenets/Header/Header";
-import Input from "./assets/componenets/Inputs/Input";
 import Table from "./assets/componenets/Table/Table";
 import UserInput from "./assets/componenets/UserInput/UserInput";
 
@@ -35,7 +34,13 @@ function App() {
     <div>
       <Header />
       <UserInput onCalculate={calculateHandler} />
-      <Table />
+      {!userInput && <p>No investment calculated yet</p>}
+      {userInput && (
+        <Table
+          data={yearlyData}
+          initialInvestment={userInput["current-savings"]}
+        />
+      )}
     </div>
   );
 }
